@@ -1,0 +1,45 @@
+app.name: OMAR MARKET PLACE
+
+session.name: 'mkt_cms_session'
+
+sec-key: '39dbc0be2d7118a3f6343b7c207f60'
+
+database:
+  server: mongodb://root:cms-mongo@mongodbmkt:27017
+  options:
+    db: mkt-cms
+
+groups:
+  cms:
+    '$admin': true
+    '$vars':
+      finder.path: '/'
+    cockpit:
+      backend: true
+      finder: true
+    collections':
+      manage: true
+    singletons:
+      manage: true
+
+# define the languages you want to manage
+languages:
+  default: 'English'
+
+cors:
+  allowedHeaders: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding, Cockpit-Token'
+  allowedMethods: 'GET, OPTIONS'
+  allowedOrigins: '*'
+  maxAge: 1000
+  allowCredentials: true
+  exposedHeaders: true
+
+redis:
+  host: http://redis
+  port: 6379
+  bypass_token: 123456
+  prefix: cockpit
+  cache_paths:
+    /api/collections/*: 60
+    /api/singletons/*: 60
+
